@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f7f3eb">
+<title>Послесвет — дневник дней</title>
+<link rel="stylesheet" href="style.css">
+<script src="app.js" defer></script>
+</head>
+<body>
+<header class="shell"><a class="logo" href="./">Послесвет<span>✳</span></a><nav><a href="#archive">Архив</a><button class="primary" data-compose>+ Записать день</button></nav></header>
+<main class="shell">
+<section class="hero">
+<div><p class="eyebrow">Личный дневник</p><h1>Каким был<br><em>этот день?</em></h1><p class="intro">Собери слова, фотографии и музыку в одно воспоминание. Вернись к нему, когда захочется снова почувствовать этот день.</p><button class="primary" data-compose>Записать свой день <span aria-hidden="true">↗</span></button></div>
+<figure class="hero-art"><img src="demo/park.jpg" alt="Силуэты деревьев вокруг пруда в осенних тонах"><figcaption>Осенний парк и какао</figcaption></figure>
+</section>
+<section id="archive">
+<div class="section-head"><h2>Архив дней</h2><label>Поиск <input id="search" type="search" placeholder="Название или текст"></label></div>
+<p id="notice" role="status"></p>
+<div id="entries" class="entries"></div>
+</section>
+</main>
+<footer class="shell">Послесвет <span>Genesis Hackathon 2026 · ArtTech</span></footer>
+<dialog id="editor" aria-labelledby="editor-title">
+<form id="journal" class="sheet">
+<div class="section-head"><h2 id="editor-title">Записать день</h2><button type="button" data-close aria-label="Закрыть">×</button></div>
+<label>Дата<input required type="date" name="date"></label>
+<label>Как прошёл твой день?<textarea required maxlength="5000" rows="4" name="entry" placeholder="Где ты была? Что запомнилось?"></textarea></label>
+<label>Фотографии (1–8)<input required type="file" name="photos" accept="image/*" multiple></label>
+<fieldset><legend>Музыка</legend><label>Источник<select name="source"><option value="link">Ссылка на песню</option><option value="file">Аудиофайл</option></select></label>
+<div id="link-fields"><label>Ссылка (https)<input name="url" type="url" placeholder="https://…" required></label></div>
+<div id="file-fields" hidden><label>Аудиофайл до 30 МБ<input name="track" type="file" accept="audio/*"></label></div>
+<label>Темп<select name="tempo"><option value="slow">Медленный</option><option value="mid" selected>Средний</option><option value="fast">Быстрый</option></select></label>
+<label>Характер звучания<select name="tone"><option value="soft">Мягкое</option><option value="bright">Светлое</option><option value="deep">Глубокое</option></select></label>
+<p class="hint">Темп задаёт скорость смены кадров, характер звучания меняет свет и контраст. Для файла приложение попробует оценить темп по записи.</p>
+</fieldset>
+<p class="hint">Личные записи хранятся в этом браузере.</p>
+<p role="alert" id="error"></p><button class="primary" id="submit">Собрать и сохранить</button>
+</form>
+</dialog>
+<dialog id="viewer" aria-labelledby="day-title"><article id="memory"></article></dialog>
+</body>
+</html>
